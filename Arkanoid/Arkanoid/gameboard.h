@@ -33,9 +33,6 @@ private slots:
     void updateAnimation();
 
 public slots:
-//    void newGame();
-//    void pauseGame();
-//    void resumeGame();
     void keyboardEvent(char key);
     void addPoint(int x, int y);
 

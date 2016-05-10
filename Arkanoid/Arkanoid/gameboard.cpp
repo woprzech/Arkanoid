@@ -17,7 +17,7 @@ GameBoard::GameBoard(QObject * parent) : QGraphicsScene(parent) {
             }
             cells[i][j] = new Block();
             cells[i][j]->setPosition(i, j);
-            cells[i][j]->setColor(Qt::blue);//TODO do naprawy
+            cells[i][j]->setColor(Qt::blue);
             cells[i][j]->setVisible(true);
             this->addItem(cells[i][j]);
         }
@@ -38,11 +38,7 @@ GameBoard::~GameBoard() {
 }
 
 void GameBoard::moveBall() {
-    qInfo() << "ballY " << ball->getY();
-    qInfo() << "ballDY: " << ball->getDY();
     if(ball->getY() == 13 && ball->getDY() > 0){
-        qInfo() << "ballX: " << ball->getX();
-        qInfo() << "userX: " << userBlock->getX();
         if(ball->getX() == userBlock->getX()){
             ball->bounce();
         } else{
@@ -82,24 +78,15 @@ void GameBoard::keyboardEvent(char key) {
     }
 }
 
-void GameBoard::runAnimation(int x, int y, int x2, int y2, int baseTime) {
-//    if(timeLine != nullptr) {
-//        delete timeLine;
-//    }
-//    qInfo() << "3 poziom";
-//    if(animation != NULL) {
-//        delete animation;
-//    }
-    timeLine = new QTimeLine(baseTime);
-    timeLine->setFrameRange(0, 1);
-    connect(timeLine, SIGNAL(finished()), this, SLOT(updateAnimation()));
+void GameBoard::runAnimation(int x, int y, int x2, int y2, int time) {
+    timeLine = new QTimeLine(time);
+    timeLine->setEasingCurve(QEasingCurve::Linear);
     animation = new QGraphicsItemAnimation;
     animation->setItem(ball);
     animation->setTimeLine(timeLine);
-//    for (int i = 0; i < 200; ++i)
-//        animation->setPosAt(i / 200.0, QPointF(i, i));
     animation->setPosAt(0.f, QPointF(x, y));
     animation->setPosAt(1.f, QPointF(x2, y2));
+    connect(timeLine, SIGNAL(finished()), this, SLOT(updateAnimation()));
     timeLine->start();
 }
 
@@ -110,7 +97,6 @@ void GameBoard::updateAnimation() {
 
 bool GameBoard::isCellEmpty(int xIndex, int yIndex) {
     if(xIndex < 0 || xIndex > 29 || yIndex < 0 || yIndex > 14){
-        qInfo() << "ASDASD";
         return false;
     }
     return cells[xIndex][yIndex] == nullptr;

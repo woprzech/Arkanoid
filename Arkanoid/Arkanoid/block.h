@@ -22,6 +22,8 @@ public:
     void setPosition(int x, int y);
     void updateX(int x);
     void updateY(int y);
+public slots:
+
 private:
     virtual QBrush getBrush();
     int edge;

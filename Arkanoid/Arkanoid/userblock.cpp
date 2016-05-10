@@ -3,14 +3,13 @@
 #include <QDebug>
 
 UserBlock::UserBlock(GameBoard *board) {
-//    this->board = board;
 }
 
-void UserBlock::moveLeft(){
+void UserBlock::moveLeft() {
     setX(getX() - 1);
 
 }
 
-void UserBlock::moveRight(){
+void UserBlock::moveRight() {
     setX(getX() + 1);
 }

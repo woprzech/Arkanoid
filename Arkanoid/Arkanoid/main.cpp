@@ -3,9 +3,8 @@
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    a.setApplicationName("Tetris");
-    a.setApplicationDisplayName("Tetris");
-    a.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    a.setApplicationName("Arkanoid");
+    a.setApplicationDisplayName("Arkanoid");
     MainWindow w;
     w.show();
 

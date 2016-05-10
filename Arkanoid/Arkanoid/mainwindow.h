@@ -10,16 +10,16 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
 public slots:
     void setPoints(int level);
+    void newGame();
     void gameOver();
-
-
 
 signals:
     void keyPressed(char key);

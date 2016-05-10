@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this, SIGNAL(keyPressed(char)), board, SLOT(keyboardEvent(char)));
     connect(board, SIGNAL(updatePoints(int)), this, SLOT(setPoints(int)));
     connect(board, SIGNAL(gameOver()), this, SLOT(gameOver()));
+    connect(ui->actionNew_game, SIGNAL(triggered(bool)), this, SLOT(newGame()));
     ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
     board->setSceneRect(0, 0, 900, 450);
     ui->graphicsView->setScene(board);
@@ -44,6 +45,13 @@ void MainWindow::setPoints(int level) {
 void MainWindow::gameOver() {
     QString tmp;
     tmp = "   Your score is " + QString::number(ui->lcdNumber->intValue()) + "   ";
-    QMessageBox::information(this,"Game Over!",tmp,QMessageBox::Ok);
+    QMessageBox::information(this, "Game Over!", tmp, QMessageBox::Ok);
+}
+
+void MainWindow::newGame() {
+    board = new GameBoard();
+    board->setSceneRect(0, 0, 900, 450);
+    ui->graphicsView->setScene(board);
+    setPoints(0);
 }
 

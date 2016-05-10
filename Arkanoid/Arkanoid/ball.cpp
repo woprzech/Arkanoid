@@ -12,7 +12,7 @@ void Ball::checkMoves(){
         dy = -dy;
         isEndOfBoard = true;
     }
-    if(getX()+getDX() < 1 || getX()+getDX() > 29){
+    if(getX()+getDX() < 0 || getX()+getDX() > 29){
         dx = -dx;
         isEndOfBoard = true;
     }
@@ -41,7 +41,6 @@ void Ball::updatePosition(){
 void Ball::bounce(){
     dy = -dy;
 }
-
 
 QBrush Ball::getBrush(){
     QRadialGradient gradient = QRadialGradient(15, 15, 18, 15, 15);
